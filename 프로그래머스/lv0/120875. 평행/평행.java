@@ -15,6 +15,7 @@ class Solution {
         float a,b;
             a= a1[0]-a2[0];
             b= a1[1]-a2[1];
+        System.out.println(b/a);
         return b/a;
     }
 }
