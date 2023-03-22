@@ -32,13 +32,8 @@ class Solution {
 
         if ( answer ==queue.size()) {
             answer = -1;
-        }
-           
+        } // 돌려도 안될 경우.
 
-
-        System.out.print(queue);
-        System.out.print(b[0]);
-        
         return answer;
     }
 }
