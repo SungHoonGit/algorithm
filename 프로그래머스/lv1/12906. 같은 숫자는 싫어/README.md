@@ -4,7 +4,7 @@
 
 ### 성능 요약
 
-메모리: 112 MB, 시간: 28.50 ms
+메모리: 117 MB, 시간: 25.49 ms
 
 ### 구분
 
@@ -37,8 +37,8 @@
 <h5>입출력 예</h5>
 <table class="table">
         <thead><tr>
-<th><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">알</font></font></th>
-<th><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">답변</font></font></th>
+<th>arr</th>
+<th>answer</th>
 </tr>
 </thead>
         <tbody><tr>

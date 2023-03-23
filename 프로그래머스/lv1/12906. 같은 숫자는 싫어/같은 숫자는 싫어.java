@@ -9,7 +9,7 @@ public class Solution {
             }
             if(i==arr.length-1) {
                 list.add(arr[arr.length-1]);
-            }
+            }// 마지막 수 저장.
         }// set 에다 저장.
         int[] answer = new int [list.size()];
 
