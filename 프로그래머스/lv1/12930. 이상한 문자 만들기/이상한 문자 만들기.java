@@ -1,25 +1,17 @@
+
 class Solution {
     public String solution(String s) {
-        String answer = "";
-        s += "1";
-        String[] test2 = s.split(" ");
-        
-        for(int j=0; j<test2.length; j++ ) {
-            String[] test = test2[j].split("");
+        String answer;
+        answer = s.toUpperCase();
+        char[] chars = answer.toCharArray();
 
-            for(int i=0; i<test.length; i++) {
-                if(i%2==0) {
-                    answer += test[i].toUpperCase();
-                } 
-                if(i%2!=0) {
-                    answer += test[i].toLowerCase();
-                } // if 2 end                
+        //앞문자가 대문자라면 소문자로 치환
+        for (int i = 1; i < chars.length; i++) {
+            if (62 <= chars[i - 1] && chars[i - 1] <= 90) {
+                chars[i] = Character.toLowerCase(chars[i]);
             }
-            if ( j != test2.length-1) {
-                answer += " ";
-            } 
         }
-        answer = answer.substring(0, answer.length()-1);
+        answer = String.valueOf(chars);
         return answer;
     }
 }
