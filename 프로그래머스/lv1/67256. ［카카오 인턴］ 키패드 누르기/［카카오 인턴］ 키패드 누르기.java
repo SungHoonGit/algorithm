@@ -27,7 +27,7 @@ class Solution {
     public String test(int i, int left, int right, String hand) {
         if (i == left) return "left";
         if (i == right) return "right";
-        System.out.println("i :" +i +"  left : "+left +" right : "+right);        
+
         String test = "";
         //x 축
         int ix = i%3;
@@ -36,15 +36,13 @@ class Solution {
             if(leftx==0) leftx=3;
         int rightx = right%3;  
             if(rightx==0) rightx=3;
-        System.out.println("ix :" +ix +"  leftx : "+leftx +" rightx : "+rightx);
+
         //y 축
         int iy = i/3;
         int lefty = left/3;
         int righty = right/3;  
             if(right%3==0) righty --;    
         
-        System.out.println("iy :" +iy +"  lefty : "+lefty +" righty : "+righty );            
-
         int leftdistance = Math.abs(ix-leftx)+ Math.abs(iy-lefty);
         int rightdistance = Math.abs(ix-rightx)+ Math.abs(iy-righty);   
         if (leftdistance>rightdistance) {
@@ -54,11 +52,6 @@ class Solution {
         } else {
             test = hand;
         }
-        
-        
-        
-        System.out.println(leftdistance+ "  "+rightdistance + " " + test);
-        
         return test;
     }
     
