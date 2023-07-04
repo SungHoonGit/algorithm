@@ -1,22 +1,16 @@
 class Solution {
-    public String solution(String s) {
-        StringBuilder sb = new StringBuilder();
-        boolean capitalize = true;
+  public String solution(String s) {
+        String answer = "";
+        String[] sp = s.toLowerCase().split("");
 
-        for (char c : s.toCharArray()) {
-            if (Character.isLetterOrDigit(c)) {
-                if (capitalize) {
-                    sb.append(Character.toUpperCase(c));
-                    capitalize = false;
-                } else {
-                    sb.append(Character.toLowerCase(c));
-                }
-            } else {
-                sb.append(c);
-                capitalize = true;
-            }
-        }
+        boolean flag = true;
 
-        return sb.toString();
-    }
+        for(String ss : sp) {
+            System.out.print(ss);
+            answer += flag ? ss.toUpperCase() : ss;
+            flag = ss.equals(" ") ? true : false;
+        } // 그냥 통째로 다 소문자 만들고 앞에만 대문자.
+
+        return answer;
+  }
 }
