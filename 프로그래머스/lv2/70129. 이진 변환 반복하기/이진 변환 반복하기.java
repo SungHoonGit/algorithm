@@ -1,27 +1,44 @@
-import java.util.Arrays;
-
 class Solution {
-    public int[] solution(String s) {
-        int[] answer = new int[2];
-        
-        int count = 0; // 이진 변환 횟수
-        int removedZeros = 0; // 제거된 0의 개수
-        
-        while (!s.equals("1")) {
-            // 1. 0 제거
-            int length = s.length();
+    public static int[] solution(String s) {
+        int a = 0;
+        int b = 0;
+        while( check(s) ) {
+            a += getCount(s);
+
             s = s.replaceAll("0", "");
-            removedZeros += length - s.length();
-            
-            // 2. 이진 변환
-            s = Integer.toBinaryString(s.length());
-            
-            count++;
+            int len = s.length();
+            s = Integer.toBinaryString(len);
+            // System.out.println(s);
+
+            b  ++;
         }
-        
-        answer[0] = count;
-        answer[1] = removedZeros;
-        
-        return answer;
+
+        return new int[] {b,a};
+    }
+
+    public static boolean check(String s) {
+        if( s.length() == 1 ) {
+            if( stoi(s) == 1 )
+                return false;
+        }
+
+        return true;
+    }
+
+    public static int getCount(String s) {
+        int count = 0;
+
+        for(char ch : s.toCharArray() ) {
+            int tmp = ch-'0';
+            if( tmp == 0 ) {
+                count ++;
+            }
+        }
+
+        return count;
+    }
+
+    public static int stoi(String s) {
+        return Integer.parseInt(s);
     }
 }
