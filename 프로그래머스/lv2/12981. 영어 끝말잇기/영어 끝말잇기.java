@@ -1,34 +1,20 @@
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.HashSet;
 
 class Solution {
-
-    public static int[] solution(int n, String[] words) {
-        List<String> list = new ArrayList<>();
-        int idx = 0;
-        list.add(words[0]);
-
-        for (int i = 1; i < words.length; i++) {
-            if (!list.contains(words[i])) {
-                String beforeWord = list.get(idx);
-                if (beforeWord.charAt(beforeWord.length() - 1) != words[i].charAt(0)) {
-                    return fail(n, i);
-                }
-                idx++;
-                list.add(words[i]);
-            } else {
-                return fail(n, i);
+    public int[] solution(int n, String[] words) {
+        int[] answer = new int[2];
+        HashSet<String> set = new HashSet<String>();
+        String prev = "";
+        set.add(words[0]);
+        for(int i = 1; i < words.length; i ++){
+            prev = words[i - 1];
+            if(set.contains(words[i]) || prev.charAt(prev.length() - 1) != words[i].charAt(0)){
+                answer[0] = i % n + 1;
+                answer[1] = (i / n + 1) ;
+                break;
             }
+            set.add(words[i]);
         }
-
-        return new int[] {0, 0};
+        return answer;
     }
-
-    private static int[] fail(int n, int i) {
-        int order = (i / n) + 1;
-        int num = (i % n) + 1;
-        return new int[] {num, order};
-    }
-
 }
