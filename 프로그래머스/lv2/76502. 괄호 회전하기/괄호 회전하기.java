@@ -1,44 +1,39 @@
-import java.util.Stack;
-// LIFO 원리를 따르는 자료구조 Stack 이용
+import java.util.*;
 
 class Solution {
-    
     public int solution(String s) {
         int answer = 0;
-        
-        String rotatedString = s; // 초기 문자열 저장
+        int strLen = s.length();
 
-        for (int i = 0; i < s.length(); i++) {
-            char firstChar = rotatedString.charAt(0); // 앞글자 저장
-            rotatedString = rotatedString.substring(1) + firstChar; // 앞글자를 제외한 나머지 문자열에 앞글자를 뒤로 붙임
-            // System.out.println(rotatedString);
-             if(check(rotatedString)) answer++;               
-        } // for end  
+        for(int i = 0; i < strLen; i++)
+            answer += cal(s, i, strLen);
 
         return answer;
-    } // solution end
-    
-    public boolean check(String str) {
-        Stack<Character> stack = new Stack<>();
+    }
 
-        for (char c : str.toCharArray()) {
-            if (c == '(' || c == '[' || c == '{') {
-                stack.push(c);
-            } else if (c == ')' || c == ']' || c == '}') {
-                if (stack.isEmpty()) {
-                    return false;
-                }
-                
-                char top = stack.pop();
-                if ((c == ')' && top != '(') ||
-                    (c == ']' && top != '[') ||
-                    (c == '}' && top != '{')) {
-                    return false;
-                }
+    public int cal(String s, int strtIdx, int strLen){
+        int ret = 0;
+        Stack<Character> st = new Stack<>();
+
+        for(int i = strtIdx; i < strtIdx + strLen; i++){
+            int idx = i % strLen;
+            char c = s.charAt(idx);
+
+            if(c == '(' || c == '{' || c == '[')
+                st.push(c);
+            else if(c == ')' || c == '}' || c == ']'){
+                if(st.empty())
+                    return 0;
+                else if((st.peek() != '(' && c == ')') || (st.peek() != '{' && c == '}') || (st.peek() != '[' && c == ']'))
+                    return 0;
+                else
+                    st.pop();
             }
-        }// for end
-        
-        return stack.isEmpty();
-    } // check end
-    
+        }
+
+        if(!st.empty())
+            return 0;
+
+        return 1;
+    }
 }
