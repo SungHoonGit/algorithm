@@ -1,39 +1,34 @@
-import java.util.*;
+import java.util.Stack;
 
 class Solution {
-    public int solution(String s) {
-        int answer = 0;
-        int strLen = s.length();
+    private final Stack<Character> stack = new Stack<>();
 
-        for(int i = 0; i < strLen; i++)
-            answer += cal(s, i, strLen);
+        public int solution(String s) {
+            int answer = 0;
+            StringBuilder stringBuilder = new StringBuilder(s);
 
-        return answer;
-    }
-
-    public int cal(String s, int strtIdx, int strLen){
-        int ret = 0;
-        Stack<Character> st = new Stack<>();
-
-        for(int i = strtIdx; i < strtIdx + strLen; i++){
-            int idx = i % strLen;
-            char c = s.charAt(idx);
-
-            if(c == '(' || c == '{' || c == '[')
-                st.push(c);
-            else if(c == ')' || c == '}' || c == ']'){
-                if(st.empty())
-                    return 0;
-                else if((st.peek() != '(' && c == ')') || (st.peek() != '{' && c == '}') || (st.peek() != '[' && c == ']'))
-                    return 0;
-                else
-                    st.pop();
+            for (int i = 0; i < s.length(); i++) {
+                stringBuilder.append(stringBuilder.charAt(0));
+                stringBuilder.deleteCharAt(0);
+                if (correctParenthesis(stringBuilder.toString().toCharArray()))
+                    answer++;
             }
+            return answer;
         }
 
-        if(!st.empty())
-            return 0;
+        private boolean correctParenthesis(char[] s) {
+            for (char c : s) {
+                if (!(check(c, '(', ')') && check(c, '[', ']') && check(c, '{', '}')))
+                    return false;
+            }
+            return stack.isEmpty();
+        }
 
-        return 1;
-    }
+        private boolean check(char c, char a, char b) {
+            if (c == a)
+                stack.push(a);
+            else if (c == b)
+                if (!stack.isEmpty() && stack.peek() == a) stack.pop(); else return false;
+            return true;
+        }
 }
