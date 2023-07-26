@@ -6,13 +6,10 @@ import java.util.HashSet;
 class Solution {
     public int solution(String str1, String str2) {
 
-        String upperStr1 = str1.toUpperCase();
-        String upperStr2 = str2.toUpperCase();
-
-        List<String> list1 = createMultiSet(upperStr1);
-        List<String> list2 = createMultiSet(upperStr2);
+        List<String> list1 = createMultiSet(str1);
+        List<String> list2 = createMultiSet(str2);
         int unionSize = list1.size()+list2.size();
-        System.out.println(createMultiSet(upperStr1) + "-" + createMultiSet(upperStr2));
+        // System.out.println(createMultiSet(upperStr1) + "-" + createMultiSet(upperStr2));
        
         List<String> intersection = new ArrayList<>();
         // intersection.retainAll(list2); 	[ab, ba, ab]-[ba, ab, ba] 반례
