@@ -2,8 +2,8 @@ import java.util.*;
 
 class Solution {
     public static int solution(int[] numbers, int target) {
-        return dfs(numbers, target, 0, 0);
-        // return bfs(numbers, target);
+        // return dfs(numbers, target, 0, 0);
+        return bfs(numbers, target);
     }
     
     private static int dfs(int[] numbers, int target, int sum, int current) {
