@@ -1,31 +1,49 @@
-import java.util.ArrayList;
+import java.util.*;
 
 class Solution {
-  public int[] solution(String msg) {
-    ArrayList<String> dic = new ArrayList<String>();
-    ArrayList<Integer> result = new ArrayList<Integer>();
+    
+    public int[] solution(String msg) {
 
-    for(int i = 0 ; i < 26; i++) {
-        dic.add(String.valueOf((char)('A'+i)));
+        List<Integer> compressed = compress(msg);
+        System.out.println("Compressed: " + compressed);
+        
+        return convertListToArray(compressed);
     }
 
-    for(int i = 0 ; i < msg.length() ; i++) {
-        for(int j = dic.size()-1 ; j >= 0 ; j--) {
-            if(msg.substring(i).startsWith(dic.get(j))) {
-                i += dic.get(j).length()-1;
-                result.add(j+1);
-                if(i+1 < msg.length())
-                    dic.add(dic.get(j)+msg.charAt(i+1));
-                break;
+    public static List<Integer> compress(String input) {
+        Map<String, Integer> dictionary = new HashMap<>();
+        List<Integer> compressed = new ArrayList<>();
+        int dictSize = 1; // 초기 사전 크기: A부터 Z까지
+
+        for (char c = 'A'; c <= 'Z'; c++) {
+            dictionary.put(Character.toString(c), dictSize++);
+        }
+        // System.out.println(dictionary);
+        String current = "";
+        for (char c : input.toCharArray()) {
+            String next = current + c;
+            if (dictionary.containsKey(next)) {
+                current = next;
+            } else {
+                compressed.add(dictionary.get(current));
+                dictionary.put(next, dictSize++);
+                current = Character.toString(c);
             }
         }
+
+        if (!current.equals("")) {
+            compressed.add(dictionary.get(current));
+        }
+
+        return compressed;
     }
-
-    int[] answer = new int[result.size()];
-
-    for(int i = 0 ; i < result.size() ; i++) 
-        answer[i] = result.get(i);
-
-    return answer;  
-  }
+    
+    public static int[] convertListToArray(List<Integer> list) {
+        int[] array = new int[list.size()];
+        for (int i = 0; i < list.size(); i++) {
+            array[i] = list.get(i);
+        }
+        return array;
+    }
+    
 }
