@@ -25,3 +25,32 @@ class Solution {
         return answer;
     }
 }
+
+class Solution2 {
+    public int[] solution(int n, int[] slicer, int[] num_list) {
+        int a=0;
+        int b=num_list.length;
+        int c = 1; 
+        int size =0;
+        
+        switch (n) {
+            case 1 : b=slicer[1]; 
+                    break;
+            case 2 : a= slicer[0];
+                    break;
+            case 3 : a= slicer[0]; b= slicer[1];
+                    break;
+            case 4 :  a= slicer[0]; b= slicer[1]; c = slicer[2];
+                    break;
+        }
+        //System.out.printf("a::%d b::%d c::%d", a,b,c );
+
+        int[] answer = new int[(b-a)/c+1];
+        
+        for(int i = a; i<=b; i=i+c){
+            answer[size++] = num_list[i];
+        }
+        
+        return answer;
+    }
+}
