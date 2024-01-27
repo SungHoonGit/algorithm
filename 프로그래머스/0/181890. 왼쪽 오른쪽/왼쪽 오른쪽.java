@@ -16,8 +16,9 @@ class Solution {
             }
             count++;
         }
-        if(count == str_list.length) count =0;
-        if(check) {
+        if(count == str_list.length) count =0; // l r check;
+        
+        if(check) { 
             str_list = Arrays.copyOfRange(str_list, 0, count);
         }else {
             str_list = Arrays.copyOfRange(str_list, count+1, str_list.length);
